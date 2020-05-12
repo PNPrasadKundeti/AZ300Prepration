@@ -1,0 +1,14 @@
+Recovery Service Vault
+   
+Azure Backups is a managed backup service provided by Microsoft. It includes a range of tools to support backing up both Windows and Linux data from on-premises storage systems, other cloud environments, and Azure itself.
+Whichever Azure Backup tool we use, the first step is always going to be the creation of a recovery services vault.
+When configuring the software, we will also need to use the vault credentials, so that the software has access to store data in the recovery services vault.
+Steps to Configure Azure Backups:
+Configure a Recovery Services Vault
+Install the Microsoft Azure Recovery Services (MARS) agent
+Register the agent with our vault using the credentials
+Perform a backup
+Perform the recovery of data
+Please note that when you use Azure Backups you MUST keep a copy of your passphrase, as Microsoft cannot restore this for you.
+It is recommended you store this within your organization's enterprise password management tool.
+It is possible to use Azure Key Vault to store this, though that is not it's direct purpose.
