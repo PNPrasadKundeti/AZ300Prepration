@@ -1,0 +1,14 @@
+Azure Activity Log: Activity Log provides us with the ability to review different operations and activities occurring across our subscription.
+
+Activity log also called as audit log or operational logs
+
+Log Analytics is a service within Azure Monitor which enables us to store and query a range of different log data.
+
+functionality of Log Analytics, and get started with the creation of our first Log Analytics workspace.
+
+Log Search:
+Specifically we will consider the log query language (KQL), the schema of log data stored in our workspace, and how to save queries as a function for later re-use. can be saved as function or query for later re-use
+Sample Queries:
+AzureActivity | limit 50
+AzureActivity | where OperationName == "Regenerate Storage Account Keys"
+AzureActivity | where Caller == "adm.jlee@laaz.onmicrosoft.com"

@@ -1,0 +1,10 @@
+To build our image: docker build -t hellola-web:v1 .
+To create the registry: az acr create --resource-group asrv --name prasadreg01 --sku Basic
+To prepare our image: docker tag hellola-web:v1 prasadreg01.azurecr.io/hellola-web:v1
+To log into our registry: docker login prasadreg01.azurecr.io
+To upload our image: Docker push laazreg01.azurecr.io/hellola-web:v1
+Code Content (if you wish to follow along):
+
+Create a folder called  hellola wherever you wish to work on your file system (e.g.  /usr/share/nginx/html)
+Create the following two files within this folder
+Note: this is the same content from the lesson, except that the image has been removed
