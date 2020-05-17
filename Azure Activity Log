@@ -11,4 +11,78 @@ Specifically we will consider the log query language (KQL), the schema of log da
 Sample Queries:
 AzureActivity | limit 50
 AzureActivity | where OperationName == "Regenerate Storage Account Keys"
-AzureActivity | where Caller == "adm.jlee@laaz.onmicrosoft.com"
+AzureActivity | where Caller == "prasad.kundeti@mydom.onmicrosoft.com"
+
+Azure Cost Managemnet: 
+Azure Pricing Calculator - providing cost estimates and pricing information for resources
+Cost Analysis within the Azure Portal - providing detailed information on the cost of resources running in your subscription
+Azure Advisor - providing recommendations on how to optimize spend, specifically tailored to your subscription
+
+Azure Storage:
+Microsoft has updated PowerShell with a new, but very similar module for managing Azure. 
+
+Create storage account: New-AzureRmStorageAccount -ResourceGroupName lab01rg -AccountName lalabsa02 -Location australiaeast -Kind BlobStorage -SkuName Standard_GRS -AccessTier Hot
+Create storage account: New-AzureRmStorageAccount -ResourceGroupName lab01rg -AccountName lalabsa03 -Location australiaeast -Kind Storage -SkuName Standard_LRS
+
+Security of Storage accounts:
+ storage account can be secured, including:
+Access Keys
+Account Shared Access Signatures (SAS)
+Service Shared Access Signatures (SAS)
+Whilst configuring and observing these in action, we will also consider some limitations of the SAS and how stored access policies can be used to help with their management.
+
+
+Azure Functions:
+
+The Azure Portal interface has changed since this lesson was recorded. All concepts taught in this lesson are still valid and remain unchanged. You will also see that the 'Application Settings' section has changed to 'Configuration' and includes settings across two tabs.
+Traditional monolithic applications have various different components performing different functions. Some times an application might be sitting idle, just waiting for something to happen.
+For example, if an application is responsible for encoding media files, it needs to await the upload of those files before it can get started.
+Azure Functions helps in these scenarios, by allowing us to create very focused code which serves a single purpose. Whilst the code is not operating, we don't have to pay for the underlying infrastructure (when using the Consumption Plan).
+In this lesson, we will:
+Create an Azure Function App
+Create a Function within the Function App
+Configure a trigger, and output binding
+Take a look at management operations
+
+VNet Peering
+peering allows virtual network to be connected between different subscriptions across regions or on-prem with the azure backbone network
+
+Virtual Networks (VNets) are isolated and private networks. By default, there is no connectivity between VNets. Resources in VNets can only talk to other resources in the same VNet, or publicly over the Internet.
+
+cross subnet peering using (Resource ID)
+
+VNet Peering allows us to privately connect VNets together, so that resources can talk via private IP across VNets.
+In this lesson we will configure and test VNet Peering, as well as discuss a number of special configuration items and limitations.
+Commands used in this lesson:
+Create VNet peer: az network vnet peering create -g vnet1rg -n vnet1-to-vnet3-peer --vnet-name vnet1 --remote-vnet /subscriptions/xx-xx-xx/resourceGroups/vnet3rg/providers/Microsoft.Network/virtualNetworks/vnet3 --allow-vnet-access
+Create return VNet peer: az network vnet peering create -g vnet3rg -n vnet3-to-vnet1-peer --vnet-name vnet3 --remote-vnet /subscriptions/xx-xx-xx/resourceGroups/vnet1rg/providers/Microsoft.Network/virtualNetworks/vnet1 --allow-vnet-access
+
+
+
+Gloabl vnet peering: we can have vnet in different regions and different subscriptions
+
+limitations: it cannot have overlapping ip address
+Vnet network does not support trainsitive peering (Vnet1-->Vnet2-->Vnet3) vnet1 cannot connect to Vnet3
+untill you created the perring bothsides (vnets) it will show status as "Initated" once cerated we can see it will change the status to "connected"
+
+Highly Available: This lesson provides an overview of the different options available to us to implement highly available VMs.
+
+Single VMs: 99.9% Availability
+Availability Set using LoadBalancer: 99.95% Availability
+VM ScaleSet using Application Gateway: 99.99% Availability
+
+Azure AD Connect is a Microsoft solution which allows us to configure hybrid identities.
+In this lesson, we'll walk through a demonstration installation of Azure AD Connect using Password Hash Sync (PHS).
+In this lesson, we will cover:
+Requirements for using Azure AD Connect
+Configuring Azure AD Connect with PHS
+How staging mode is configured
+Using management tools to control syncrhonization
+Important tools and tips:
+
+Failing to use a routable-domain for the user-principal name (UPN) can result in login issues
+Syncrhonization Service Manager allows management of the connectors and synchronization profiles
+Synchronization can be triggered using: Start-ADSyncSyncCycle:
+-PolicyType Intial option is for the initial sync
+-PolicyType Delta is for differential sync
+In staging mode, synchronization will run (both automatically or if you use the command) but will not do an actual export to Azure AD
